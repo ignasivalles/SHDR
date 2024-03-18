@@ -343,7 +343,7 @@ def _run_multiprocessing_fit_pool(variable, depth, opts):
     n = variable.shape[0]
     pool_arguments = [[variable[i, :], depth[i, :], opts] for i in range(n)]
     with mp.Pool(processes=mp.cpu_count()) as pool:
-        results_fit = pool.starmap(_fit_profile, tqdm(pool_arguments,
+        results_fit = pool.starmap(_fit_single_profile, tqdm(pool_arguments,
                                                      total=len(pool_arguments)), chunksize=1)
     return results_fit
 
